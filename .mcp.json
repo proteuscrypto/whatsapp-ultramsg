@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "ultramsg": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/server/index.js"],
+      "env": {
+        "ULTRAMSG_INSTANCE_ID": "${ULTRAMSG_INSTANCE_ID}",
+        "ULTRAMSG_TOKEN": "${ULTRAMSG_TOKEN}"
+      }
+    }
+  }
+}
