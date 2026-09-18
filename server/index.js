@@ -13,6 +13,27 @@
  */
 "use strict";
 
+const fs = require("node:fs");
+const path = require("node:path");
+
+function loadLocalEnv() {
+  const envPath = path.join(__dirname, "..", ".env");
+  if (!fs.existsSync(envPath)) return;
+
+  for (const line of fs.readFileSync(envPath, "utf8").split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const separator = trimmed.indexOf("=");
+    if (separator < 1) continue;
+
+    const key = trimmed.slice(0, separator).trim();
+    const value = trimmed.slice(separator + 1).trim().replace(/^['"]|['"]$/g, "");
+    if (key && !process.env[key]) process.env[key] = value;
+  }
+}
+
+loadLocalEnv();
+
 const INSTANCE_ID = process.env.ULTRAMSG_INSTANCE_ID;
 const TOKEN = process.env.ULTRAMSG_TOKEN;
 const BASE_URL = `https://api.ultramsg.com/${INSTANCE_ID}`;
@@ -21,7 +42,8 @@ function requireCreds() {
   if (!INSTANCE_ID || !TOKEN) {
     throw new Error(
       "Falta configurar ULTRAMSG_INSTANCE_ID y/o ULTRAMSG_TOKEN. " +
-        "Configura estas variables de entorno al instalar el plugin (ver README)."
+        "Copia .env.example como .env dentro de la carpeta del plugin, completa " +
+        "tus datos de UltraMsg y reinicia Claude (ver README)."
     );
   }
 }

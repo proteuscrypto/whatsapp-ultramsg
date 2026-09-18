@@ -43,11 +43,29 @@ las credenciales no se comparten entre usuarios).
    instalado el plugin) y escanearlo desde WhatsApp en el telefono
    (Configuracion → Dispositivos vinculados → Vincular un dispositivo), igual
    que al vincular [WhatsApp Web](https://web.whatsapp.com/).
-4. Al instalar este plugin, configurar las variables de entorno:
-   - `ULTRAMSG_INSTANCE_ID` — el Instance ID del paso 2.
-   - `ULTRAMSG_TOKEN` — el Token del paso 2.
-5. Verificar la conexion pidiendole a Claude "revisa el estado de mi
+4. En la carpeta del plugin, copia `.env.example` como `.env` y completa:
+  - `ULTRAMSG_INSTANCE_ID` — el Instance ID del paso 2.
+  - `ULTRAMSG_TOKEN` — el Token del paso 2.
+  El servidor carga ese archivo automáticamente al iniciarse. No lo subas a
+  GitHub: `.env` ya está excluido por `.gitignore`.
+5. Reinicia Claude para que el servidor MCP vuelva a leer la configuracion.
+6. Verifica la conexion pidiendole a Claude "revisa el estado de mi
    instancia de WhatsApp" (usa la herramienta `get_instance_status`).
+
+### Alternativa: variables de entorno
+
+Si preferis no usar un archivo local, configura `ULTRAMSG_INSTANCE_ID` y
+`ULTRAMSG_TOKEN` en el entorno del proceso que inicia Claude. El plugin
+prioriza esas variables y solo usa `.env` como alternativa local.
+
+En PowerShell, por ejemplo:
+
+```powershell
+$env:ULTRAMSG_INSTANCE_ID = "instance12345"
+$env:ULTRAMSG_TOKEN = "tu_token"
+```
+
+Luego reinicia Claude desde esa misma sesión.
 
 ## Uso
 
@@ -66,6 +84,8 @@ ejemplo:
 - El token de UltraMsg da acceso completo a esa instancia (leer y enviar
   mensajes en nombre del numero vinculado). Tratarlo como una contrasena:
   no compartirlo ni pegarlo en chats o repos publicos.
+- Si un token apareció en una captura, chat, log o repositorio, regeneralo
+  inmediatamente desde el panel de UltraMsg y actualiza tu `.env`.
 - El plugin nunca envia mensajes masivos sin confirmacion explicita del
   usuario (ver `skills/whatsapp-ultramsg/SKILL.md`).
 
