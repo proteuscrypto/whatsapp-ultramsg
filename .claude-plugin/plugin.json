@@ -1,6 +1,6 @@
 {
   "name": "whatsapp-ultramsg",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Conecta WhatsApp (https://web.whatsapp.com/) a Claude usando la API de UltraMsg: enviar y leer mensajes, imagenes, documentos, grupos y contactos. Desarrollado por NetDigitalTech (https://netdigitaltech.com/).",
   "author": {
     "name": "NetDigitalTech",

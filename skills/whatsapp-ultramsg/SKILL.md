@@ -22,9 +22,9 @@ plugin's tools call that instance's REST API.
 ## Before sending anything
 
 1. If a tool call fails with a message about missing `ULTRAMSG_INSTANCE_ID` /
-   `ULTRAMSG_TOKEN`, tell the user those environment variables need to be set
-   for this plugin (see the plugin's README for how to get them from
-   https://ultramsg.com), and stop — do not guess values.
+  `ULTRAMSG_TOKEN`, tell the user to follow the English setup steps in the
+  plugin README: copy `.env.example` to `.env`, enter the credentials from
+  https://ultramsg.com, and restart Claude. Stop — do not guess values.
 2. If a tool call fails or returns a status indicating the instance is not
    authenticated (e.g. `get_instance_status` reports something other than
    "authenticated"/connected), suggest calling `get_qr_code` and tell the

@@ -41,9 +41,9 @@ const BASE_URL = `https://api.ultramsg.com/${INSTANCE_ID}`;
 function requireCreds() {
   if (!INSTANCE_ID || !TOKEN) {
     throw new Error(
-      "Falta configurar ULTRAMSG_INSTANCE_ID y/o ULTRAMSG_TOKEN. " +
-        "Copia .env.example como .env dentro de la carpeta del plugin, completa " +
-        "tus datos de UltraMsg y reinicia Claude (ver README)."
+      "ULTRAMSG_INSTANCE_ID and/or ULTRAMSG_TOKEN is missing. " +
+        "Copy .env.example to .env in the plugin folder, enter your UltraMsg " +
+        "credentials, and restart Claude (see README)."
     );
   }
 }
@@ -356,7 +356,7 @@ const toolsByName = Object.fromEntries(tools.map((t) => [t.name, t]));
 // ---- Minimal MCP (JSON-RPC 2.0 over stdio, newline-delimited) --------
 
 const PROTOCOL_VERSION = "2024-11-05";
-const SERVER_INFO = { name: "whatsapp-ultramsg", version: "0.2.0" };
+const SERVER_INFO = { name: "whatsapp-ultramsg", version: "0.3.0" };
 
 function send(message) {
   process.stdout.write(JSON.stringify(message) + "\n");
