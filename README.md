@@ -6,6 +6,25 @@ groups and contacts from a Claude conversation.
 
 **Developed by [NetDigitalTech](https://netdigitaltech.com/).**
 
+## Required before first use
+
+This plugin needs two private UltraMsg credentials before any WhatsApp tool
+can work. Do **not** paste them into a Claude conversation, the public
+`.mcp.json` file, or GitHub.
+
+Configure these private environment variables in the MCP/plugin settings of
+the app where you installed this plugin:
+
+```env
+ULTRAMSG_INSTANCE_ID=your_instance_id
+ULTRAMSG_TOKEN=your_token
+```
+
+If your Claude installation does not provide a private environment-variable
+section, use the local `.env` setup described below. If neither option is
+available, contact the plugin administrator: the credentials cannot be added
+securely through a normal chat message.
+
 ## Features
 
 - Send text, image, document, audio, video, location, and contact (vCard)

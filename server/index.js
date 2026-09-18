@@ -356,7 +356,7 @@ const toolsByName = Object.fromEntries(tools.map((t) => [t.name, t]));
 // ---- Minimal MCP (JSON-RPC 2.0 over stdio, newline-delimited) --------
 
 const PROTOCOL_VERSION = "2024-11-05";
-const SERVER_INFO = { name: "whatsapp-ultramsg", version: "0.3.1" };
+const SERVER_INFO = { name: "whatsapp-ultramsg", version: "0.3.2" };
 
 function send(message) {
   process.stdout.write(JSON.stringify(message) + "\n");
