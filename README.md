@@ -1,32 +1,31 @@
 # WhatsApp + UltraMsg
 
-Conecta [WhatsApp](https://web.whatsapp.com/) a Claude usando la API de
-[UltraMsg](https://ultramsg.com), para enviar y leer mensajes, manejar
-grupos y contactos, todo desde una conversacion con Claude.
+Connect [WhatsApp](https://web.whatsapp.com/) to Claude using the
+[UltraMsg](https://ultramsg.com) API to send and read messages and manage
+groups and contacts from a Claude conversation.
 
-**Desarrollado por [NetDigitalTech](https://netdigitaltech.com/).**
+**Developed by [NetDigitalTech](https://netdigitaltech.com/).**
 
-## Que hace
+## Features
 
-- Enviar mensajes de texto, imagenes, documentos, audio, video, ubicacion y
-  contactos (vCard) por WhatsApp.
-- Leer el historial de mensajes y chats de la instancia conectada.
-- Reaccionar y borrar mensajes.
-- Listar y consultar grupos y contactos, verificar si un numero tiene
-  WhatsApp, bloquear/desbloquear contactos.
-- Ver el estado de conexion de la instancia y obtener el codigo QR para
-  vincular WhatsApp.
+- Send text, image, document, audio, video, location, and contact (vCard)
+  messages through WhatsApp.
+- Read message history and chats from the connected instance.
+- React to and delete messages.
+- List and inspect groups and contacts, check WhatsApp availability, and
+  block or unblock contacts.
+- Check the connection status and get the QR code needed to link WhatsApp.
 
-> **Nota sobre "editar" mensajes**: WhatsApp no permite editar el texto de un
-> mensaje ya enviado a traves de la API. La alternativa que ofrece el plugin
-> es borrar el mensaje (`delete_message`) y enviar uno nuevo corregido.
+> **Editing messages:** WhatsApp does not support editing an already-sent
+> message through the API. The plugin can delete it (`delete_message`) and
+> send a corrected replacement.
 
 ## Componentes
 
-| Componente | Cantidad | Proposito |
+| Component | Count | Purpose |
 |---|---|---|
-| MCP Server | 1 | Expone 22 herramientas que llaman a la API REST de UltraMsg (`api.ultramsg.com`) |
-| Skill | 1 | Guia a Claude sobre formato de numeros/chatIds, confirmaciones antes de enviar, y como interpretar respuestas |
+| MCP server | 1 | Exposes 22 tools that call the UltraMsg REST API (`api.ultramsg.com`) |
+| Skill | 1 | Guides Claude on phone numbers, chat IDs, confirmations, and responses |
 
 ## Setup (once per user)
 
@@ -70,17 +69,15 @@ $env:ULTRAMSG_TOKEN = "tu_token"
 
 Then restart Claude from the same session.
 
-## Uso
+## Usage
 
-Una vez configurado, simplemente pedile a Claude en lenguaje natural, por
-ejemplo:
+After setup, ask Claude in natural language. For example:
 
-- "Mandale un WhatsApp a +54 9 11 2233-4455 diciendo que llego tarde"
-- "Revisa los ultimos mensajes de WhatsApp"
-- "Que grupos de WhatsApp tengo"
-- "Chequea si este numero tiene WhatsApp: +1 405 555 0100"
-- "Enviale esta imagen por WhatsApp a Juan" (necesita una URL publica de la
-  imagen)
+- "Send a WhatsApp message to +54 9 11 2233-4455 saying I will be late."
+- "Check my latest WhatsApp messages."
+- "List my WhatsApp groups."
+- "Check whether this number has WhatsApp: +1 405 555 0100."
+- "Send this image to Juan on WhatsApp." (The image needs a public URL.)
 
 ## Seguridad
 
@@ -91,6 +88,6 @@ ejemplo:
 - The plugin never sends bulk messages without explicit user confirmation
   (see `skills/whatsapp-ultramsg/SKILL.md`).
 
-## Creditos
+## Credits
 
-Plugin desarrollado y mantenido por [NetDigitalTech](https://netdigitaltech.com/).
+Plugin developed and maintained by [NetDigitalTech](https://netdigitaltech.com/).

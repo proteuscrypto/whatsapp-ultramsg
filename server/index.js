@@ -96,13 +96,13 @@ const tools = [
   {
     name: "send_text_message",
     description:
-      "Enviar un mensaje de texto de WhatsApp a un numero (formato internacional, ej. +5491122334455) o a un chatId de grupo.",
+      "Send a WhatsApp text message to a number (international format, e.g. +5491122334455) or a group chatId.",
     inputSchema: {
       type: "object",
       properties: {
-        to: { type: "string", description: "Numero en formato internacional o chatId (termina en @c.us o @g.us)" },
-        body: { type: "string", description: "Texto del mensaje (maximo 4096 caracteres)" },
-        priority: { type: "integer", description: "Prioridad de envio opcional (mayor = antes en la cola)" },
+        to: { type: "string", description: "International phone number or chatId (ending in @c.us or @g.us)" },
+        body: { type: "string", description: "Message text (maximum 4096 characters)" },
+        priority: { type: "integer", description: "Optional sending priority (higher values are sent first)" },
       },
       required: ["to", "body"],
     },
@@ -110,12 +110,12 @@ const tools = [
   },
   {
     name: "send_image",
-    description: "Enviar una imagen por WhatsApp desde una URL, con caption opcional.",
+    description: "Send an image through WhatsApp from a URL, with an optional caption.",
     inputSchema: {
       type: "object",
       properties: {
         to: { type: "string" },
-        image: { type: "string", description: "URL publica de la imagen o base64" },
+        image: { type: "string", description: "Public image URL or base64 data" },
         caption: { type: "string" },
       },
       required: ["to", "image"],
@@ -124,12 +124,12 @@ const tools = [
   },
   {
     name: "send_document",
-    description: "Enviar un documento/archivo por WhatsApp desde una URL.",
+    description: "Send a document or file through WhatsApp from a URL.",
     inputSchema: {
       type: "object",
       properties: {
         to: { type: "string" },
-        document: { type: "string", description: "URL publica del documento o base64" },
+        document: { type: "string", description: "Public document URL or base64 data" },
         filename: { type: "string" },
         caption: { type: "string" },
       },
@@ -145,12 +145,12 @@ const tools = [
   },
   {
     name: "send_audio",
-    description: "Enviar una nota de audio/voz por WhatsApp desde una URL.",
+    description: "Send an audio or voice note through WhatsApp from a URL.",
     inputSchema: {
       type: "object",
       properties: {
         to: { type: "string" },
-        audio: { type: "string", description: "URL publica del audio o base64" },
+        audio: { type: "string", description: "Public audio URL or base64 data" },
       },
       required: ["to", "audio"],
     },
@@ -158,12 +158,12 @@ const tools = [
   },
   {
     name: "send_video",
-    description: "Enviar un video por WhatsApp desde una URL, con caption opcional.",
+    description: "Send a video through WhatsApp from a URL, with an optional caption.",
     inputSchema: {
       type: "object",
       properties: {
         to: { type: "string" },
-        video: { type: "string", description: "URL publica del video o base64" },
+        video: { type: "string", description: "Public video URL or base64 data" },
         caption: { type: "string" },
       },
       required: ["to", "video"],
@@ -172,7 +172,7 @@ const tools = [
   },
   {
     name: "send_location",
-    description: "Enviar una ubicacion (lat/lng) por WhatsApp.",
+    description: "Send a location (latitude/longitude) through WhatsApp.",
     inputSchema: {
       type: "object",
       properties: {
@@ -187,12 +187,12 @@ const tools = [
   },
   {
     name: "send_vcard",
-    description: "Enviar un contacto (vCard) por WhatsApp.",
+    description: "Send a contact (vCard) through WhatsApp.",
     inputSchema: {
       type: "object",
       properties: {
         to: { type: "string" },
-        vcard: { type: "string", description: "Contenido vCard completo" },
+        vcard: { type: "string", description: "Complete vCard content" },
       },
       required: ["to", "vcard"],
     },
@@ -200,12 +200,12 @@ const tools = [
   },
   {
     name: "send_reaction",
-    description: "Reaccionar con un emoji a un mensaje ya enviado o recibido.",
+    description: "React with an emoji to a sent or received message.",
     inputSchema: {
       type: "object",
       properties: {
-        msg_id: { type: "string", description: "ID del mensaje al que se reacciona" },
-        emoji: { type: "string", description: "Emoji de la reaccion, ej. \"👍\"" },
+        msg_id: { type: "string", description: "ID of the message to react to" },
+        emoji: { type: "string", description: "Reaction emoji, e.g. \"👍\"" },
       },
       required: ["msg_id", "emoji"],
     },
@@ -214,7 +214,7 @@ const tools = [
   {
     name: "delete_message",
     description:
-      "Borrar un mensaje enviado (WhatsApp no permite editar el texto de un mensaje ya enviado via API; la alternativa es borrarlo y reenviarlo con send_text_message).",
+      "Delete a sent message (WhatsApp does not support editing sent text through the API; delete it and resend it with send_text_message).",
     inputSchema: {
       type: "object",
       properties: { msg_id: { type: "string" } },
@@ -224,13 +224,13 @@ const tools = [
   },
   {
     name: "get_messages",
-    description: "Obtener el historial de mensajes de la instancia (enviados, en cola, no enviados, o todos).",
+    description: "Get the instance message history (sent, queued, unsent, invalid, or all).",
     inputSchema: {
       type: "object",
       properties: {
         status: { type: "string", enum: ["sent", "queue", "unsent", "invalid", "all"], default: "all" },
         page: { type: "integer", default: 1 },
-        limit: { type: "integer", default: 50, description: "Maximo 100" },
+        limit: { type: "integer", default: 50, description: "Maximum 100" },
         sort: { type: "string", enum: ["asc", "desc"], default: "desc" },
       },
     },
@@ -244,13 +244,13 @@ const tools = [
   },
   {
     name: "get_chats",
-    description: "Listar los chats (conversaciones) de la instancia de WhatsApp.",
+    description: "List the WhatsApp instance chats (conversations).",
     inputSchema: { type: "object", properties: {} },
     handler: () => ultramsg("/chats", "GET"),
   },
   {
     name: "get_chat_messages",
-    description: "Obtener los mensajes de un chat especifico (por chatId).",
+    description: "Get messages from a specific chat by chatId.",
     inputSchema: {
       type: "object",
       properties: {
@@ -263,7 +263,7 @@ const tools = [
   },
   {
     name: "mark_chat_read",
-    description: "Marcar un chat como leido.",
+    description: "Mark a chat as read.",
     inputSchema: {
       type: "object",
       properties: { chatId: { type: "string" } },
@@ -273,12 +273,12 @@ const tools = [
   },
   {
     name: "archive_chat",
-    description: "Archivar o desarchivar un chat.",
+    description: "Archive or unarchive a chat.",
     inputSchema: {
       type: "object",
       properties: {
         chatId: { type: "string" },
-        archive: { type: "boolean", default: true, description: "true para archivar, false para desarchivar" },
+        archive: { type: "boolean", default: true, description: "true to archive, false to unarchive" },
       },
       required: ["chatId"],
     },
@@ -287,13 +287,13 @@ const tools = [
   },
   {
     name: "get_groups",
-    description: "Listar los grupos de WhatsApp de la instancia.",
+    description: "List the WhatsApp groups in the instance.",
     inputSchema: { type: "object", properties: {} },
     handler: () => ultramsg("/groups", "GET"),
   },
   {
     name: "get_group",
-    description: "Obtener detalles de un grupo especifico (integrantes, admins, etc).",
+    description: "Get details for a specific group (members, admins, and more).",
     inputSchema: {
       type: "object",
       properties: { groupId: { type: "string" } },
@@ -303,23 +303,23 @@ const tools = [
   },
   {
     name: "get_contacts",
-    description: "Listar los contactos guardados en la instancia de WhatsApp.",
+    description: "List the contacts saved in the WhatsApp instance.",
     inputSchema: { type: "object", properties: {} },
     handler: () => ultramsg("/contacts", "GET"),
   },
   {
     name: "check_contact",
-    description: "Verificar si un numero existe y tiene WhatsApp activo.",
+    description: "Check whether a number exists and has an active WhatsApp account.",
     inputSchema: {
       type: "object",
-      properties: { chatId: { type: "string", description: "Numero o chatId a verificar" } },
+      properties: { chatId: { type: "string", description: "Number or chatId to check" } },
       required: ["chatId"],
     },
     handler: (a) => ultramsg("/contacts/check", "GET", { chatId: a.chatId }),
   },
   {
     name: "block_contact",
-    description: "Bloquear o desbloquear un contacto.",
+    description: "Block or unblock a contact.",
     inputSchema: {
       type: "object",
       properties: {
@@ -333,19 +333,19 @@ const tools = [
   },
   {
     name: "get_instance_status",
-    description: "Ver el estado de conexion de la instancia de WhatsApp (conectada, desconectada, esperando QR, etc).",
+    description: "Check the WhatsApp instance connection status (connected, disconnected, waiting for QR, and more).",
     inputSchema: { type: "object", properties: {} },
     handler: () => ultramsg("/instance/status", "GET"),
   },
   {
     name: "get_qr_code",
-    description: "Obtener el codigo QR para vincular WhatsApp a la instancia (cuando aun no esta autenticada).",
+    description: "Get the QR code to link WhatsApp to the instance when it is not authenticated.",
     inputSchema: { type: "object", properties: {} },
     handler: () => ultramsg("/instance/qr", "GET"),
   },
   {
     name: "restart_instance",
-    description: "Reiniciar la instancia de WhatsApp (util si quedo colgada o desconectada).",
+    description: "Restart the WhatsApp instance if it is stuck or disconnected.",
     inputSchema: { type: "object", properties: {} },
     handler: () => ultramsg("/instance/restart", "POST"),
   },

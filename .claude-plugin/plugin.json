@@ -1,7 +1,7 @@
 {
   "name": "whatsapp-ultramsg",
   "version": "0.3.0",
-  "description": "Conecta WhatsApp (https://web.whatsapp.com/) a Claude usando la API de UltraMsg: enviar y leer mensajes, imagenes, documentos, grupos y contactos. Desarrollado por NetDigitalTech (https://netdigitaltech.com/).",
+  "description": "Connect WhatsApp (https://web.whatsapp.com/) to Claude using the UltraMsg API to send and read messages, images, documents, groups, and contacts. Developed by NetDigitalTech (https://netdigitaltech.com/).",
   "author": {
     "name": "NetDigitalTech",
     "url": "https://netdigitaltech.com/"
@@ -9,5 +9,5 @@
   "homepage": "https://netdigitaltech.com/",
   "repository": "https://github.com/proteuscrypto/whatsapp-ultramsg",
   "license": "MIT",
-  "keywords": ["whatsapp", "ultramsg", "mensajeria", "api", "netdigitaltech"]
+  "keywords": ["whatsapp", "ultramsg", "messaging", "api", "netdigitaltech"]
 }

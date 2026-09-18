@@ -5,9 +5,9 @@ description: >
   check WhatsApp messages, read WhatsApp chats, send an image/document/video/
   audio/location by WhatsApp, manage WhatsApp groups or contacts, or otherwise
   interact with WhatsApp through the UltraMsg API. Trigger phrases include
-  "mandale un WhatsApp a", "enviar un mensaje de WhatsApp", "revisa mis
-  mensajes de WhatsApp", "que dice el grupo de WhatsApp", "envia esta imagen
-  por WhatsApp", "chequea si este numero tiene WhatsApp".
+  "send a WhatsApp message to", "send a WhatsApp message", "check my
+  WhatsApp messages", "what does the WhatsApp group say", "send this image
+  on WhatsApp", "check whether this number has WhatsApp".
 metadata:
   version: "0.1.0"
 ---
@@ -28,7 +28,7 @@ plugin's tools call that instance's REST API.
 2. If a tool call fails or returns a status indicating the instance is not
    authenticated (e.g. `get_instance_status` reports something other than
    "authenticated"/connected), suggest calling `get_qr_code` and tell the
-   user to scan the QR code with WhatsApp on their phone (WhatsApp app →
+  user to scan the QR code with WhatsApp on their phone (WhatsApp app ->
    Linked devices → Link a device) to (re)connect the instance.
 3. Before sending a message that isn't explicitly and clearly requested by
    the user (e.g. sending to a new recipient not previously discussed, or
