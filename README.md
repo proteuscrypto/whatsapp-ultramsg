@@ -1,29 +1,30 @@
-# WhatsApp + UltraMsg
+# Wapliss WhatsApp for Claude
 
-Connect [WhatsApp](https://web.whatsapp.com/) to Claude using the
-[UltraMsg](https://ultramsg.com) API to send and read messages and manage
-groups and contacts from a Claude conversation.
+Connect [WhatsApp](https://web.whatsapp.com/) to Claude through
+[Wapliss](https://wapliss.com/ultramsg). Wapliss manages authentication,
+UltraMsg connectivity, subscription plans, and message quotas.
 
-**Developed by [NetDigitalTech](https://netdigitaltech.com/).**
+**Provided by [Wapliss](https://wapliss.com/).**
 
-## Required before first use
+## User setup
 
-This plugin needs two private UltraMsg credentials before any WhatsApp tool
-can work. Do **not** paste them into a Claude conversation, the public
-`.mcp.json` file, or GitHub.
+The intended user experience is zero-configuration inside Claude:
 
-Configure these private environment variables in the MCP/plugin settings of
-the app where you installed this plugin:
+1. Install the Wapliss WhatsApp plugin in Claude.
+2. Ask Claude to send a WhatsApp message or check the connection.
+3. When Claude reports that the account is not connected, open
+  [wapliss.com/ultramsg](https://wapliss.com/ultramsg).
+4. Sign in with Google or email.
+5. Connect WhatsApp by scanning the QR code shown by Wapliss.
+6. Return to Claude and retry the action.
 
-```env
-ULTRAMSG_INSTANCE_ID=your_instance_id
-ULTRAMSG_TOKEN=your_token
-```
+Users must never copy an UltraMsg token into Claude. Wapliss stores and uses
+the provider credentials on the server side.
 
-If your Claude installation does not provide a private environment-variable
-section, use the local `.env` setup described below. If neither option is
-available, contact the plugin administrator: the credentials cannot be added
-securely through a normal chat message.
+> **Deployment requirement:** the zero-configuration flow requires the Wapliss
+> hosted MCP server, OAuth callback, database, and UltraMsg provisioning API.
+> The local `stdio` server in this repository is a development fallback and
+> does not yet provide user authentication, quotas, or Stripe billing.
 
 ## Features
 
@@ -39,17 +40,17 @@ securely through a normal chat message.
 > message through the API. The plugin can delete it (`delete_message`) and
 > send a corrected replacement.
 
-## Componentes
+## Components
 
 | Component | Count | Purpose |
 |---|---|---|
 | MCP server | 1 | Exposes 22 tools that call the UltraMsg REST API (`api.ultramsg.com`) |
 | Skill | 1 | Guides Claude on phone numbers, chat IDs, confirmations, and responses |
 
-## Setup (once per user)
+## Local development fallback
 
-Each person who installs this plugin connects their own WhatsApp number to
-their own UltraMsg instance. Credentials are never shared between users.
+For local development only, the current `stdio` server can call a manually
+configured UltraMsg instance. This path is not the intended end-user flow.
 
 1. Create a free account at [ultramsg.com](https://ultramsg.com) and create a
   new **Instance**. The free trial is enough for testing.
@@ -83,10 +84,24 @@ For example, in PowerShell:
 
 ```powershell
 $env:ULTRAMSG_INSTANCE_ID = "instance12345"
-$env:ULTRAMSG_TOKEN = "tu_token"
+$env:ULTRAMSG_TOKEN = "your_ultramsg_token"
 ```
 
 Then restart Claude from the same session.
+
+## Plans and quotas
+
+The Wapliss service will provide:
+
+- **Free:** up to 100 messages per account per UTC day.
+- **Pro:** a recurring Stripe subscription with the Wapliss quota removed,
+  subject to the limits of the connected UltraMsg plan.
+- **Upgrade:** users upgrade from the Wapliss dashboard; the same WhatsApp
+  connection remains in place.
+
+The quota must be enforced by the Wapliss middleware, not by Claude and not
+by the client-side page. The server must count accepted sends atomically and
+reset the daily window at 00:00 UTC.
 
 ## Usage
 
@@ -98,7 +113,7 @@ After setup, ask Claude in natural language. For example:
 - "Check whether this number has WhatsApp: +1 405 555 0100."
 - "Send this image to Juan on WhatsApp." (The image needs a public URL.)
 
-## Seguridad
+## Security
 
 - The UltraMsg token gives full access to the instance. Treat it like a
   password: never share it or paste it into chats or public repositories.
@@ -109,4 +124,4 @@ After setup, ask Claude in natural language. For example:
 
 ## Credits
 
-Plugin developed and maintained by [NetDigitalTech](https://netdigitaltech.com/).
+Plugin developed and maintained by [Wapliss](https://wapliss.com/).

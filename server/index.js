@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * whatsapp-ultramsg MCP server
+ * Wapliss WhatsApp MCP server
  *
  * A dependency-free Model Context Protocol server (stdio transport) that
  * exposes the UltraMsg WhatsApp REST API (https://docs.ultramsg.com/) as
@@ -356,7 +356,7 @@ const toolsByName = Object.fromEntries(tools.map((t) => [t.name, t]));
 // ---- Minimal MCP (JSON-RPC 2.0 over stdio, newline-delimited) --------
 
 const PROTOCOL_VERSION = "2024-11-05";
-const SERVER_INFO = { name: "whatsapp-ultramsg", version: "0.3.2" };
+const SERVER_INFO = { name: "wapliss-whatsapp", version: "0.4.0" };
 
 function send(message) {
   process.stdout.write(JSON.stringify(message) + "\n");

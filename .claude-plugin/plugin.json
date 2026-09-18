@@ -1,13 +1,13 @@
 {
-  "name": "whatsapp-ultramsg",
-  "version": "0.3.2",
-  "description": "Connect WhatsApp (https://web.whatsapp.com/) to Claude using the UltraMsg API to send and read messages, images, documents, groups, and contacts. Developed by NetDigitalTech (https://netdigitaltech.com/).",
+  "name": "wapliss-whatsapp",
+  "version": "0.4.0",
+  "description": "Connect WhatsApp to Claude through Wapliss, with secure account authentication, usage limits, and UltraMsg connectivity.",
   "author": {
-    "name": "NetDigitalTech",
-    "url": "https://netdigitaltech.com/"
+    "name": "Wapliss",
+    "url": "https://wapliss.com/"
   },
-  "homepage": "https://netdigitaltech.com/",
+  "homepage": "https://wapliss.com/ultramsg",
   "repository": "https://github.com/proteuscrypto/whatsapp-ultramsg",
   "license": "MIT",
-  "keywords": ["whatsapp", "ultramsg", "messaging", "api", "netdigitaltech"]
+  "keywords": ["whatsapp", "wapliss", "ultramsg", "messaging", "oauth"]
 }

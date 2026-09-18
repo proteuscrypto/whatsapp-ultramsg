@@ -1,5 +1,5 @@
 ---
-name: whatsapp-ultramsg
+name: wapliss-whatsapp
 description: >
   This skill should be used whenever the user asks to send a WhatsApp message,
   check WhatsApp messages, read WhatsApp chats, send an image/document/video/
@@ -12,20 +12,17 @@ metadata:
   version: "0.1.0"
 ---
 
-# WhatsApp via UltraMsg
+# WhatsApp via Wapliss
 
-Use the `ultramsg` MCP tools to send and read WhatsApp messages through the
-user's UltraMsg instance. UltraMsg is a WhatsApp API gateway: each user (or
-the organization) links one real WhatsApp number to an "instance", and the
-plugin's tools call that instance's REST API.
+Use the Wapliss MCP tools to send and read WhatsApp messages through the
+user's Wapliss account. Wapliss manages the user's UltraMsg connection,
+authentication, plan, and daily message quota.
 
 ## Before sending anything
 
-1. If a tool call fails with a message about missing `ULTRAMSG_INSTANCE_ID` /
-  `ULTRAMSG_TOKEN`, do not ask the user to paste credentials into the chat.
-  Tell them to open the plugin or MCP host's private environment settings and
-  add both variables, or follow the local `.env` setup in the plugin README.
-  Tell them to restart Claude after saving. Stop — do not guess values.
+1. If the user is not authenticated with Wapliss, direct them to
+  https://wapliss.com/ultramsg to sign in and connect their WhatsApp account.
+  Never ask the user to paste UltraMsg credentials into the chat.
 2. If a tool call fails or returns a status indicating the instance is not
    authenticated (e.g. `get_instance_status` reports something other than
    "authenticated"/connected), suggest calling `get_qr_code` and tell the

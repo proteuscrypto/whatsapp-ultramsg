@@ -1,6 +1,6 @@
 {
-  "name": "whatsapp-ultramsg-mcp-server",
-  "version": "0.3.2",
+  "name": "wapliss-whatsapp-mcp-server",
+  "version": "0.4.0",
   "private": true,
   "description": "Dependency-free MCP server exposing the UltraMsg WhatsApp API as tools",
   "type": "commonjs",
